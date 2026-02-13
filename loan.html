@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval Checker</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #4e73df, #1cc88a);
+            text-align: center;
+            padding-top: 80px;
+            color: white;
+        }
+
+        .container {
+            background: white;
+            color: black;
+            width: 350px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        select, input {
+            width: 90%;
+            padding: 8px;
+            margin: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4e73df;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .allow { color: green; }
+        .notallow { color: red; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🏦 Loan Approval</h2>
+
+    <input type="number" id="empId" placeholder="Employee ID">
+
+    <select id="income">
+        <option value="">Select Income</option>
+        <option value="High">High</option>
+        <option value="Low">Low</option>
+    </select>
+
+    <select id="credit">
+        <option value="">Select Credit Score</option>
+        <option value="Good">Good</option>
+        <option value="Poor">Poor</option>
+    </select>
+
+    <select id="employment">
+        <option value="">Select Employment</option>
+        <option value="Employed">Employed</option>
+        <option value="Unemployed">Unemployed</option>
+    </select>
+
+    <button id="checkBtn">Check</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+document.getElementById("checkBtn").addEventListener("click", function() {
+
+    const income = document.getElementById("income").value;
+    const credit = document.getElementById("credit").value;
+    const employment = document.getElementById("employment").value;
+    const resultDiv = document.getElementById("result");
+
+    if (income === "" || credit === "" || employment === "") {
+        resultDiv.innerHTML = "⚠ Please fill all fields";
+        resultDiv.className = "";
+        return;
+    }
+
+    if (income === "High" && credit === "Good" && employment === "Employed") {
+        resultDiv.innerHTML = "✅ ALLOW";
+        resultDiv.className = "allow";
+    } else {
+        resultDiv.innerHTML = "❌ NOT ALLOW";
+        resultDiv.className = "notallow";
+    }
+
+});
+</script>
+
+</body>
+</html>
